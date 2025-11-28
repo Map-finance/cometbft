@@ -45,7 +45,7 @@ require (
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2
 	github.com/btcsuite/btcd/btcutil v1.1.3
 	github.com/cometbft/cometbft-db v0.9.1
-	github.com/cosmos/cosmos-proto v1.0.0-beta.4
+	github.com/cosmos/cosmos-proto v1.0.0-beta.5
 	github.com/cosmos/cosmos-sdk v0.50.4
 	github.com/cosmos/gogoproto v1.4.11
 	github.com/go-git/go-git/v5 v5.11.0
@@ -55,7 +55,7 @@ require (
 	github.com/vektra/mockery/v2 v2.23.1
 	golang.org/x/sync v0.6.0
 	gonum.org/v1/gonum v0.12.0
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require (
