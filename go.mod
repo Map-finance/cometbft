@@ -1,6 +1,6 @@
 module github.com/cometbft/cometbft
 
-go 1.21
+go 1.23
 
 require (
 	github.com/BurntSushi/toml v1.2.1
@@ -55,7 +55,7 @@ require (
 	github.com/vektra/mockery/v2 v2.23.1
 	golang.org/x/sync v0.6.0
 	gonum.org/v1/gonum v0.12.0
-	google.golang.org/protobuf v1.32.0
+	google.golang.org/protobuf v1.36.10
 )
 
 require (
@@ -169,7 +169,7 @@ require (
 	github.com/golangci/revgrep v0.0.0-20220804021717-745bb2f7c2e6 // indirect
 	github.com/golangci/unconvert v0.0.0-20180507085042-28b1c447d1f4 // indirect
 	github.com/google/btree v1.1.2 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/go-containerregistry v0.13.0 // indirect
 	github.com/google/pprof v0.0.0-20230228050547-1710fef4ab10 // indirect
 	github.com/gordonklaus/ineffassign v0.0.0-20230107090616-13ace0543b28 // indirect
