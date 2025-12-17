@@ -10,6 +10,7 @@ import (
 // IsShortTermClobOrderTransaction returns true if the provided `tx` is a
 // Cosmos transaction containing a short-term `MsgPlaceOrder` or
 // short-term `MsgCancelOrder` or `MsgBatchCancel` message.
+// 支持 dydxprotocol 和 h2x 两种 proto 包名
 func IsShortTermClobOrderTransaction(
 	tx types.Tx,
 	mempoolLogger log.Logger,
@@ -22,7 +23,10 @@ func IsShortTermClobOrderTransaction(
 	}
 	if cosmosTx.Body != nil && len(cosmosTx.Body.Messages) == 1 {
 		bytes := cosmosTx.Body.Messages[0].Value
-		if cosmosTx.Body.Messages[0].TypeUrl == "/dydxprotocol.clob.MsgPlaceOrder" {
+		typeUrl := cosmosTx.Body.Messages[0].TypeUrl
+
+		// 检查 MsgPlaceOrder（支持 dydxprotocol 和 h2x 两种包名）
+		if typeUrl == "/dydxprotocol.clob.MsgPlaceOrder" || typeUrl == "/h2x.clob.MsgPlaceOrder" {
 			msgPlaceOrder := &clob.MsgPlaceOrder{}
 			err := msgPlaceOrder.Unmarshal(bytes)
 			// In the case of an unmarshalling error, panic.
@@ -34,7 +38,9 @@ func IsShortTermClobOrderTransaction(
 			}
 			return msgPlaceOrder.Order.OrderId.IsShortTermOrder()
 		}
-		if cosmosTx.Body.Messages[0].TypeUrl == "/dydxprotocol.clob.MsgCancelOrder" {
+
+		// 检查 MsgCancelOrder（支持 dydxprotocol 和 h2x 两种包名）
+		if typeUrl == "/dydxprotocol.clob.MsgCancelOrder" || typeUrl == "/h2x.clob.MsgCancelOrder" {
 			msgCancelOrder := &clob.MsgCancelOrder{}
 			err := msgCancelOrder.Unmarshal(bytes)
 			// In the case of an unmarshalling error, panic.
@@ -44,7 +50,9 @@ func IsShortTermClobOrderTransaction(
 			}
 			return msgCancelOrder.OrderId.IsShortTermOrder()
 		}
-		if cosmosTx.Body.Messages[0].TypeUrl == "/dydxprotocol.clob.MsgBatchCancel" {
+
+		// 检查 MsgBatchCancel（支持 dydxprotocol 和 h2x 两种包名）
+		if typeUrl == "/dydxprotocol.clob.MsgBatchCancel" || typeUrl == "/h2x.clob.MsgBatchCancel" {
 			// MsgBatchCancel only processes short term order cancellations as of right now.
 			return true
 		}
